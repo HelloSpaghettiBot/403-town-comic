@@ -1,0 +1,46 @@
+# Local Codex attachments and workspace scratch files
+.codex-remote-attachments/
+
+# Dependency folders
+node_modules/
+**/node_modules/
+
+# Build output and caches
+dist/
+build/
+.cache/
+.local/
+coverage/
+tmp/
+out-tsc/
+*.tsbuildinfo
+
+# Packaged archives and deployment bundles
+*.tgz
+*.tar.gz
+*.zip
+*.old*
+deploy/
+**/deploy/
+main-site-patch/
+source-zips/
+app/403-Town-Combined/visual-checks/
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

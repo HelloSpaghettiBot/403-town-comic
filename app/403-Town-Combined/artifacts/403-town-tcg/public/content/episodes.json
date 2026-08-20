@@ -1,0 +1,57 @@
+{
+  "episodes": [
+    {
+      "id": "ep-01",
+      "slug": "the-beginning",
+      "number": 1,
+      "title": "The Beginning",
+      "subtitle": "Episode One",
+      "summary": "The ordinary screen opens into 403 Town, where Sultan, Startup, and Gold Bar still burn with color before the first real corruption takes hold.",
+      "status": "Published comic",
+      "published": "2026-08-20",
+      "cover": "/comics/the-beginning/page-1.png",
+      "pages": [
+        "/comics/the-beginning/page-1.png",
+        "/comics/the-beginning/page-2.webp",
+        "/comics/the-beginning/page-3.webp"
+      ]
+    },
+    {
+      "id": "ep-02",
+      "slug": "zeros-perspective",
+      "number": 2,
+      "title": "Zero's Perspective",
+      "subtitle": "Chapter 01 // Color Missing",
+      "summary": "The town was colorful once. From Zero's side of the signal, the first signs of the Static Void appear in the woods outside the towns.",
+      "status": "Published comic",
+      "published": "2026-08-20",
+      "cover": "/comics/zeros-perspective/page-1.webp",
+      "pages": [
+        "/comics/zeros-perspective/page-1.webp",
+        "/comics/zeros-perspective/page-2.webp"
+      ]
+    },
+    {
+      "id": "ep-00",
+      "slug": "color-missing",
+      "number": 0,
+      "title": "Color Missing Storyboard",
+      "subtitle": "Pilot // Chapter 01",
+      "summary": "The original storyboard preview remains archived as development material while the finished comic pages move into the main reading order.",
+      "status": "Storyboard preview",
+      "published": "2026-08-18",
+      "cover": "/comics/episode-01/page-1.webp",
+      "download": "/comics/episode-01/storyboard.pdf",
+      "pages": [
+        "/comics/episode-01/page-1.webp",
+        "/comics/episode-01/page-2.webp",
+        "/comics/episode-01/page-3.webp",
+        "/comics/episode-01/page-4.webp",
+        "/comics/episode-01/page-5.webp",
+        "/comics/episode-01/page-6.webp",
+        "/comics/episode-01/page-7.webp",
+        "/comics/episode-01/page-8.webp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,953 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-primary-border: var(--sidebar-primary-border);
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-accent-border: var(--sidebar-accent-border);
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* LIGHT MODE — the client defaults to its graphite command deck */
+:root {
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --badge-outline: rgba(0, 0, 0, 0.05);
+
+  /* Automatic computation of border around primary / danger buttons */
+  --opaque-button-border-intensity: -8; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(0, 0, 0, 0.03);
+  --elevate-2: rgba(0, 0, 0, 0.08);
+
+  --background: 222 17% 8%;
+  --foreground: 210 25% 93%;
+  --border: 216 16% 22%;
+  --card: 220 17% 11%;
+  --card-foreground: 210 25% 93%;
+  --card-border: 216 14% 26%;
+  --sidebar: 223 19% 6%;
+  --sidebar-foreground: 210 25% 93%;
+  --sidebar-border: 216 15% 18%;
+  --sidebar-primary: 190 96% 53%;
+  --sidebar-primary-foreground: 222 17% 8%;
+  --sidebar-accent: 320 87% 59%;
+  --sidebar-accent-foreground: 210 25% 93%;
+  --sidebar-ring: 190 96% 53%;
+  --popover: 220 18% 13%;
+  --popover-foreground: 210 25% 93%;
+  --popover-border: 216 14% 26%;
+  --primary: 190 96% 53%;
+  --primary-foreground: 222 17% 8%;
+  --secondary: 320 87% 59%;
+  --secondary-foreground: 222 17% 8%;
+  --muted: 220 13% 17%;
+  --muted-foreground: 213 12% 60%;
+  --accent: 160 82% 45%;
+  --accent-foreground: 222 17% 8%;
+  --destructive: 348 91% 57%;
+  --destructive-foreground: 210 25% 93%;
+  --input: 216 16% 24%;
+  --ring: 190 96% 53%;
+  --chart-1: 190 96% 53%;
+  --chart-2: 320 87% 59%;
+  --chart-3: 160 82% 45%;
+  --chart-4: 38 92% 56%;
+  --chart-5: 348 91% 57%;
+  --app-font-sans: 'Arial Narrow', 'Roboto Condensed', Arial, sans-serif;
+  --app-font-serif: 'Arial Narrow', 'Roboto Condensed', Arial, sans-serif;
+  --app-font-mono: 'Cascadia Mono', Consolas, monospace;
+  --radius: 0.125rem;
+  --shadow-2xs: 0 2px 0 hsl(190 96% 53% / 0.08);
+  --shadow-xs: 0 2px 0 hsl(190 96% 53% / 0.08);
+  --shadow-sm:
+    0 2px 0 hsl(190 96% 53% / 0.08),
+    0 1px 2px -1px hsl(190 96% 53% / 0.08);
+  --shadow:
+    0 2px 0 hsl(190 96% 53% / 0.08),
+    0 1px 2px -1px hsl(190 96% 53% / 0.08);
+  --shadow-md:
+    0 2px 0 hsl(190 96% 53% / 0.08),
+    0 2px 4px -1px hsl(190 96% 53% / 0.08);
+  --shadow-lg:
+    0 2px 0 hsl(190 96% 53% / 0.08),
+    0 4px 6px -1px hsl(190 96% 53% / 0.08);
+  --shadow-xl:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-2xl: 0 2px 0 hsl(190 96% 53% / 0.08);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(
+    from hsl(var(--sidebar-primary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(
+    from hsl(var(--sidebar-accent)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(
+    from hsl(var(--primary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(
+    from hsl(var(--secondary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(
+    from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) /
+      alpha
+  );
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(
+    from hsl(var(--accent)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(
+    from hsl(var(--destructive)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+}
+
+.dark {
+  --button-outline: rgba(255, 255, 255, 0.1);
+  --badge-outline: rgba(255, 255, 255, 0.05);
+
+  --opaque-button-border-intensity: 9; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.09);
+
+  --background: 222 17% 8%;
+  --foreground: 210 25% 93%;
+  --border: 216 16% 22%;
+  --card: 220 17% 11%;
+  --card-foreground: 210 25% 93%;
+  --card-border: 216 14% 26%;
+  --sidebar: 223 19% 6%;
+  --sidebar-foreground: 210 25% 93%;
+  --sidebar-border: 216 15% 18%;
+  --sidebar-primary: 190 96% 53%;
+  --sidebar-primary-foreground: 222 17% 8%;
+  --sidebar-accent: 320 87% 59%;
+  --sidebar-accent-foreground: 210 25% 93%;
+  --sidebar-ring: 190 96% 53%;
+  --popover: 220 18% 13%;
+  --popover-foreground: 210 25% 93%;
+  --popover-border: 216 14% 26%;
+  --primary: 190 96% 53%;
+  --primary-foreground: 222 17% 8%;
+  --secondary: 320 87% 59%;
+  --secondary-foreground: 222 17% 8%;
+  --muted: 220 13% 17%;
+  --muted-foreground: 213 12% 60%;
+  --accent: 160 82% 45%;
+  --accent-foreground: 222 17% 8%;
+  --destructive: 348 91% 57%;
+  --destructive-foreground: 210 25% 93%;
+  --input: 216 16% 24%;
+  --ring: 190 96% 53%;
+  --chart-1: 190 96% 53%;
+  --chart-2: 320 87% 59%;
+  --chart-3: 160 82% 45%;
+  --chart-4: 38 92% 56%;
+  --chart-5: 348 91% 57%;
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-sm:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-md:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-lg:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-xl:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer base {
+  html { background: #101216; }
+  body { min-width: 320px; background: #101216; }
+  button, a, input, select { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: hsl(var(--secondary)); color: hsl(var(--foreground)); }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--app-font-sans); }
+  .font-mono-ui { font-family: var(--app-font-mono); }
+  .client-shell {
+    background:
+      linear-gradient(rgba(26, 30, 36, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 30, 36, 0.18) 1px, transparent 1px),
+      radial-gradient(circle at 70% 0%, rgba(0, 216, 255, 0.08), transparent 34rem),
+      #101216;
+    background-size: 32px 32px, 32px 32px, auto, auto;
+  }
+  .scanlines::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: .045;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.55) 4px);
+    mix-blend-mode: overlay;
+  }
+  html[data-scanlines='off'] .scanlines::after { display: none; }
+  .bracket-frame {
+    clip-path: polygon(0 12px, 12px 12px, 12px 0, calc(100% - 12px) 0, calc(100% - 12px) 12px, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 12px calc(100% - 12px), 0 calc(100% - 12px));
+  }
+  .glitch-hover:hover { text-shadow: 2px 0 hsl(var(--secondary)), -2px 0 hsl(var(--primary)); }
+  .cyan-line { box-shadow: inset 3px 0 hsl(var(--primary)); }
+  .pink-line { box-shadow: inset 3px 0 hsl(var(--secondary)); }
+  .text-shadow-cyan { text-shadow: 0 0 18px rgba(0, 216, 255, .25); }
+}
+
+@keyframes signal-pulse { 0%, 100% { opacity: .72; transform: scaleX(1); } 50% { opacity: 1; transform: scaleX(.94); } }
+@keyframes data-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes glitch { 0%, 93%, 100% { transform: translate(0); } 94% { transform: translate(2px, -1px); } 96% { transform: translate(-2px, 1px); } }
+@keyframes pack-stage-pulse { 0%, 100% { box-shadow: 0 0 80px rgba(0,216,255,.12); } 50% { box-shadow: 0 0 120px rgba(255,0,153,.18); } }
+@keyframes pack-card-reveal {
+  0% { opacity: 0; transform: translateY(18px) rotateY(92deg) scale(.88); filter: brightness(1.8) blur(2px); }
+  55% { opacity: 1; transform: translateY(-8px) rotateY(-8deg) scale(1.04); filter: brightness(1.35) blur(0); }
+  100% { opacity: 1; transform: translateY(0) rotateY(0) scale(1); filter: brightness(1); }
+}
+@keyframes damage-pop {
+  0% { opacity: 0; transform: translate(-50%, 12px) scale(.86); }
+  18% { opacity: 1; transform: translate(-50%, -10px) scale(1.08); }
+  100% { opacity: 0; transform: translate(-50%, -34px) scale(1); }
+}
+.animate-signal { animation: signal-pulse 2.4s ease-in-out infinite; transform-origin: left; }
+.animate-data-in { animation: data-in .45s ease-out both; }
+.animate-glitch { animation: glitch 4s infinite; }
+.pack-reveal-stage { animation: pack-stage-pulse 2.8s ease-in-out infinite; }
+.pack-reveal-card { transform-style: preserve-3d; }
+.pack-reveal-card.is-revealed { animation: pack-card-reveal .72s cubic-bezier(.2,.8,.2,1) both; }
+.damage-pop { animation: damage-pop 1.25s ease-out both; }
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ *
+ * <element className="hover-elevate" />
+ * <element className="active-elevate-2" />
+ *
+ * // Using the tailwind utility when a data attribute is "on"
+ * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
+ * // Or manually controlling the toggle state
+ * <element className="toggle-elevate toggle-elevated" />
+ *
+ * Elevation systems have to handle many states.
+ * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
+ * - toggled or not
+ * - focused or not (this is not handled with these utilities)
+ *
+ * Even without handling focused or not, this is six possible combinations that
+ * need to be distinguished from eachother visually.
+ */
+@layer utilities {
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
+   * buttons/badges can remove the automatic brightness adjustment on interactions
+   * and program their own. */
+  .no-default-hover-elevate {
+  }
+
+  .no-default-active-elevate {
+  }
+
+  /**
+   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
+   * This way they can stack/compound. Both will overlap the parent's borders!
+   * So borders will be automatically adjusted both on toggle, and hover/active,
+   * and they will be compounded.
+   */
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: -1;
+    /* sits behind content but above backdrop */
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  /* Does not work on elements with overflow:hidden! */
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: 999;
+    /* sits in front of content */
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+@layer utilities {
+  .story-shell {
+    background:
+      radial-gradient(circle at 75% -10%, rgba(0, 216, 255, 0.10), transparent 30rem),
+      radial-gradient(circle at 5% 24%, rgba(255, 0, 153, 0.055), transparent 28rem),
+      #090b0f;
+  }
+  .story-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+  }
+  .story-title {
+    text-shadow: 0 0 48px rgba(0, 216, 255, .10);
+  }
+  .episode-paper {
+    max-width: 980px;
+    box-shadow: 0 22px 70px rgba(0,0,0,.42);
+  }
+  .story-playmat {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0, 216, 255, .12), transparent 36%),
+      linear-gradient(180deg, rgba(255,255,255,.025), transparent 45%),
+      #05070a;
+  }
+  .tcg-story-battlefield {
+    min-height: calc(100dvh - 10.5rem);
+    max-height: calc(100dvh - 10.5rem);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .tcg-story-battlefield .tcg-card-thumb,
+  .tcg-story-battlefield .story-battle-card {
+    min-height: 0;
+  }
+  .tcg-story-battlefield .tcg-card-thumb .card-thumb-name {
+    font-size: 10px;
+    line-height: 1;
+  }
+  .tcg-story-battlefield .tcg-card-thumb .card-thumb-stats,
+  .tcg-story-battlefield .tcg-card-thumb .card-thumb-ability,
+  .tcg-story-battlefield .tcg-card-thumb .card-thumb-owned {
+    font-size: 7px;
+    line-height: 1;
+  }
+  .tcg-story-battlefield .tcg-card-thumb > div:nth-child(2) {
+    padding: 1.7rem .35rem .35rem;
+  }
+  .tcg-story-battlefield .story-battle-card-copy {
+    padding: .35rem;
+  }
+  .tcg-story-battlefield .story-battle-card-name {
+    font-size: 10px;
+    line-height: 1;
+  }
+  .tcg-story-battlefield .story-battle-card-stats,
+  .tcg-story-battlefield .story-battle-card-ability {
+    font-size: 7px;
+    line-height: 1.15;
+  }
+  .tcg-story-battlefield .story-battle-card-ability {
+    display: none;
+  }
+  .tcg-app-board {
+    min-height: calc(100dvh - 11rem);
+  }
+  .card-detail-modal {
+    max-height: min(720px, calc(100dvh - 1.5rem));
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .tcg-app-board .tcg-board-lane .group img,
+  .tcg-app-board .tcg-hand-dock .group img {
+    object-position: center top;
+  }
+  @media (max-width: 520px) {
+    .client-shell main {
+      padding-left: .55rem;
+      padding-right: .55rem;
+      padding-top: .55rem;
+    }
+    .card-detail-modal {
+      max-height: calc(100dvh - 1rem);
+    }
+    .card-detail-modal > div:nth-child(2) {
+      grid-template-columns: 5.35rem minmax(0, 1fr);
+      gap: .75rem;
+      padding: .75rem;
+    }
+    .card-detail-modal > div:nth-child(3) {
+      padding: .75rem;
+    }
+    .card-detail-modal .font-display.text-2xl {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .story-battle-strip {
+      padding: .4rem .55rem;
+    }
+    .story-battle-strip h1 {
+      font-size: 1rem;
+    }
+    .story-battle-strip > div:last-child {
+      max-width: 8.5rem;
+      font-size: 7px;
+      line-height: 1.2;
+    }
+    .story-enemy-panel {
+      display: none;
+    }
+    .story-enemy-card {
+      grid-template-columns: 3.8rem minmax(0, 1fr);
+    }
+    .story-enemy-card .tcg-card-thumb > div:nth-child(2) {
+      padding-top: 1rem;
+    }
+    .story-enemy-card .tcg-card-thumb .card-thumb-name {
+      font-size: 8px;
+    }
+    .story-enemy-card .tcg-card-thumb .card-thumb-stats,
+    .story-enemy-card .tcg-card-thumb .card-thumb-owned {
+      display: none;
+    }
+    .story-enemy-card > div:last-child {
+      padding: .45rem;
+    }
+    .story-enemy-role {
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .story-enemy-meta,
+    .story-enemy-faction,
+    .story-enemy-stars {
+      font-size: 7px;
+      line-height: 1.2;
+    }
+    .story-enemy-ability {
+      margin-top: .4rem;
+      padding-top: .35rem;
+      font-size: 8px;
+      line-height: 1.25;
+    }
+    .story-playmat {
+      display: grid;
+      grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+      gap: .4rem;
+      min-height: 0;
+      padding: .4rem .45rem 4.75rem;
+      overflow: hidden;
+    }
+    .story-stat-row > div,
+    .story-selected-card,
+    .story-lane {
+      padding: .45rem;
+    }
+    .story-selected-card .font-display {
+      font-size: .95rem;
+    }
+    .story-selected-card {
+      display: none;
+    }
+    .story-selected-card > div:last-child {
+      grid-column: 1 / -1;
+      margin-top: 0;
+      padding-top: .35rem;
+      font-size: 8px;
+      line-height: 1.4;
+    }
+    .story-actions button {
+      min-height: 2.5rem;
+      padding-top: .45rem;
+      padding-bottom: .45rem;
+    }
+    .story-card-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .3rem;
+    }
+    .story-lane {
+      min-height: 0;
+    }
+    .story-lane .story-card-row {
+      align-items: start;
+    }
+    .story-lane .story-battle-card {
+      max-height: 6.35rem;
+    }
+    .story-lane .story-battle-card .aspect-\[3\/4\] {
+      max-height: 4.3rem;
+      overflow: hidden;
+    }
+    .story-stat-row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .35rem;
+    }
+    .story-stat-row > div {
+      font-size: 7px;
+      line-height: 1.1;
+    }
+    .story-hand {
+      position: sticky;
+      bottom: 4.85rem;
+      z-index: 35;
+      margin-left: -.45rem;
+      margin-right: -.45rem;
+      border-top: 1px solid hsl(var(--border));
+      background: linear-gradient(180deg, rgba(5, 7, 10, .86), #05070a 42%);
+      padding: .45rem;
+      box-shadow: 0 -14px 28px rgba(0,0,0,.48);
+    }
+    .story-hand .story-card-row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .story-hand .tcg-card-thumb {
+      max-height: 5.55rem;
+    }
+    .story-hand .tcg-card-thumb > div:nth-child(2) {
+      padding: 1.1rem .28rem .28rem;
+    }
+    .story-hand .tcg-card-thumb .card-thumb-name {
+      font-size: 7px;
+    }
+    .story-hand .tcg-card-thumb .card-thumb-stats,
+    .story-hand .tcg-card-thumb .card-thumb-ability,
+    .story-hand .tcg-card-thumb .card-thumb-owned {
+      display: none;
+    }
+    .story-log {
+      display: none;
+    }
+    .pack-reveal-overlay {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 4.5rem);
+    }
+    .pack-reveal-overlay .max-w-6xl {
+      padding-top: .35rem;
+      padding-bottom: calc(env(safe-area-inset-bottom) + 4.85rem);
+    }
+    .pack-reveal-overlay h2 {
+      font-size: 1.85rem;
+    }
+    .pack-reveal-stage {
+      max-height: calc(100dvh - 7.25rem);
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+    .pack-reveal-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .tcg-app-board {
+      min-height: calc(100dvh - 9.75rem);
+    }
+    .tcg-app-board-header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .tcg-board-lane {
+      padding: .35rem;
+    }
+    .tcg-board-lane > div:last-child {
+      gap: .3rem;
+    }
+    .tcg-board-lane > div:last-child > div {
+      min-height: 5.6rem;
+      padding: .2rem;
+    }
+    .tcg-hand-dock {
+      position: sticky;
+      bottom: 4.85rem;
+      z-index: 35;
+      box-shadow: 0 -14px 28px rgba(0,0,0,.48);
+    }
+  }
+  @media (orientation: landscape) and (max-height: 560px) {
+    .client-shell .tcg-topbar {
+      display: none;
+    }
+    .client-shell main {
+      padding: .35rem .5rem 3rem;
+    }
+    .tcg-bottom-nav {
+      box-sizing: border-box !important;
+      height: 42px !important;
+      min-height: 42px !important;
+      padding: 2px .5rem !important;
+    }
+    .tcg-bottom-nav a {
+      gap: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .tcg-bottom-nav a span:first-child {
+      height: 1.35rem !important;
+      width: 2.1rem !important;
+    }
+    .tcg-bottom-nav svg {
+      height: 13px;
+      width: 13px;
+    }
+    .tcg-bottom-nav a span:last-child {
+      font-size: 7px;
+      line-height: 1;
+    }
+    .story-battle-strip {
+      display: none;
+    }
+    .tcg-story-battlefield {
+      min-height: 0;
+      max-height: calc(100dvh - 2.9rem);
+      overflow: hidden;
+    }
+    .tcg-story-battlefield .story-enemy-panel {
+      display: none;
+    }
+    .tcg-story-battlefield .story-enemy-card {
+      grid-template-columns: 4rem minmax(0, 1fr);
+      margin-top: 0;
+    }
+    .tcg-story-battlefield .story-enemy-card > div:last-child {
+      max-height: 5.35rem;
+      overflow: hidden;
+      padding: .45rem;
+    }
+    .tcg-story-battlefield .story-enemy-card .font-display {
+      font-size: .95rem;
+      line-height: 1;
+    }
+    .tcg-story-battlefield .story-enemy-ability {
+      border-top: 0;
+      margin-top: .35rem;
+      padding-top: 0;
+      font-size: 8px;
+      line-height: 1.25;
+    }
+    .tcg-story-battlefield .story-enemy-stars {
+      display: none;
+    }
+    .tcg-story-battlefield .story-playmat {
+      display: grid;
+      grid-template-columns: 8rem minmax(13rem, .95fr) minmax(17rem, 1.05fr);
+      gap: .65rem;
+      align-items: start;
+      padding: .45rem .5rem 6rem;
+      overflow: hidden;
+    }
+    .tcg-story-battlefield .story-playmat > * {
+      margin: 0;
+    }
+    .tcg-story-battlefield .story-stat-row {
+      grid-template-columns: 1fr;
+      gap: .35rem;
+    }
+    .tcg-story-battlefield .story-selected-card {
+      padding: .45rem;
+    }
+    .tcg-story-battlefield .story-selected-card {
+      display: none;
+    }
+    .tcg-story-battlefield .story-selected-card .font-display {
+      font-size: .9rem;
+    }
+    .tcg-story-battlefield .story-actions {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+    }
+    .tcg-story-battlefield .story-lane {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      padding: .45rem;
+    }
+    .tcg-story-battlefield .story-enemy-lane {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+    .tcg-story-battlefield .story-hand {
+      position: static;
+      grid-column: 1 / -1;
+      grid-row: 3;
+      z-index: 1;
+      border-top: 1px solid hsl(var(--border));
+      background: linear-gradient(180deg, rgba(5, 7, 10, .88), #05070a 42%);
+      padding: .15rem .5rem .25rem;
+      box-shadow: none;
+    }
+    .tcg-story-battlefield .story-hand .mb-2 {
+      margin-bottom: .1rem;
+      font-size: 8px;
+    }
+    .tcg-story-battlefield .story-hand .story-card-row {
+      display: grid;
+      grid-template-columns: repeat(4, 4.3rem);
+      justify-content: center;
+      gap: .35rem;
+    }
+    .tcg-story-battlefield .story-hand .tcg-card-thumb {
+      max-height: 3.95rem;
+    }
+    .tcg-story-battlefield .story-hand .tcg-card-thumb > div:nth-child(2) {
+      padding: 1.15rem .25rem .25rem;
+    }
+    .tcg-story-battlefield .story-hand .tcg-card-thumb .card-thumb-name {
+      font-size: 7px;
+    }
+    .tcg-story-battlefield .story-hand .tcg-card-thumb .card-thumb-stats,
+    .tcg-story-battlefield .story-hand .tcg-card-thumb .card-thumb-ability,
+    .tcg-story-battlefield .story-hand .tcg-card-thumb .card-thumb-owned {
+      display: none;
+    }
+    .tcg-story-battlefield .story-lane .story-card-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .tcg-story-battlefield .story-log {
+      display: none;
+    }
+    .tcg-app-board {
+      min-height: 0;
+      max-height: calc(100dvh - 2.8rem);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+    .tcg-app-board-header {
+      padding: .25rem .45rem;
+    }
+    .tcg-app-table {
+      min-height: 0;
+      overflow: hidden;
+      padding: .35rem;
+      display: grid;
+      grid-template-columns: 4.8rem minmax(0, 1fr);
+      gap: .35rem;
+    }
+    .tcg-app-table > div:first-child {
+      grid-column: 1;
+      align-content: start;
+      flex-direction: column;
+      gap: .25rem;
+      max-height: 11rem;
+      overflow: hidden;
+    }
+    .tcg-app-table > div:first-child > div {
+      height: 2.45rem;
+      width: 1.85rem;
+    }
+    .tcg-app-table > div:nth-child(2) {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+      gap: .35rem;
+      min-height: 0;
+    }
+    .tcg-app-table .tcg-board-lane {
+      padding: .3rem;
+    }
+    .tcg-app-table .tcg-board-lane > div:last-child > div {
+      min-height: 5.3rem;
+      padding: .15rem;
+    }
+    .tcg-app-table .tcg-board-lane button > div:first-child {
+      display: block;
+      max-height: 3.15rem;
+      overflow: hidden;
+    }
+    .tcg-app-table .tcg-board-lane button {
+      min-height: 5rem;
+    }
+    .tcg-app-table > div:nth-child(2) > div:nth-child(2) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      align-self: stretch;
+    }
+    .tcg-log-ticker {
+      display: none;
+    }
+    .tcg-hand-dock {
+      padding: .25rem .5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 8.5rem;
+      grid-template-rows: auto auto;
+      gap: .25rem .5rem;
+    }
+    .tcg-hand-dock > div:first-child {
+      grid-column: 1 / -1;
+      margin: 0;
+    }
+    .tcg-hand-dock > div:nth-child(2) {
+      grid-column: 1;
+      min-width: 0;
+    }
+    .tcg-hand-dock button:not(:last-child) {
+      min-width: 4.2rem;
+    }
+    .tcg-hand-dock .aspect-\[3\/4\] {
+      max-height: 3.4rem;
+      overflow: hidden;
+    }
+    .tcg-hand-dock > button:last-child {
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 0;
+      min-height: 3.4rem;
+      padding: .25rem .5rem;
+    }
+    .pack-reveal-overlay .max-w-6xl {
+      padding-top: .25rem;
+      padding-bottom: 3rem;
+    }
+    .pack-reveal-stage {
+      padding: .75rem;
+    }
+    .pack-reveal-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+}

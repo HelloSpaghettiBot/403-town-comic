@@ -1,0 +1,26 @@
+403 Town Cards - Named and Split
+
+Heroes:
+- atRisk
+- Chroma
+- Flicker
+- Grid
+- Koding
+- Sue-Shi
+
+Villains:
+- Backslash
+- CrossTalk
+- GhostRoute
+- Latch
+- RedKey
+- SoftLock
+- ZeroByte
+
+Extras:
+- 5miles
+- DarkComit.exe
+- Err0r
+- HUNTA.exe
+- Proxy
+- RavenKey

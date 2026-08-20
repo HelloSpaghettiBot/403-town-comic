@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "403 Town"
+description = "The 403 Town comic hub with the connected trading card game integrated under /tcg."
+version = "1.0.0"
+id = "artifacts/403-town-tcg"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23628
+
+[services.development]
+run = "pnpm --filter @workspace/403-town-tcg run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/403-town-tcg", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/403-town-tcg/dist"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23628"
+BASE_PATH = "/"
