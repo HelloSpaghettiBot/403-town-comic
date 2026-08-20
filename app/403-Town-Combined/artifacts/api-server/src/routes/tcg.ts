@@ -107,6 +107,7 @@ type Store = {
   collections: Collection[];
   storyProgress: StoryProgress[];
   waitingUserId: string | null;
+  waitingSince?: string | null;
   matches: Match[];
 };
 
@@ -116,6 +117,7 @@ const storyProgressVersion = "2026-08-20-server-story-02";
 const storyChapterCount = 6;
 const maxHandSize = 4;
 const maxBoardSize = 3;
+const matchmakingQueueTtlMs = 2 * 60 * 1000;
 
 const cards: Card[] = [
   { id: "atrisk", name: "atRisk", faction: "403 Town", role: "Signal Leader", rarity: "LEGENDARY", image: "/cards/named/403-Town-Cards-Named-Split/Heroes/atRisk.webp", attack: 84, health: 92, ability: "Signal Rally", owned: 2 },
@@ -157,10 +159,11 @@ async function readStore(): Promise<Store> {
       collections: parsed.collections ?? [],
       storyProgress: parsed.storyProgress ?? [],
       waitingUserId: parsed.waitingUserId ?? null,
+      waitingSince: parsed.waitingSince ?? null,
       matches: parsed.matches ?? [],
     };
   } catch {
-    return { users: [], sessions: [], decks: [], collections: [], storyProgress: [], waitingUserId: null, matches: [] };
+    return { users: [], sessions: [], decks: [], collections: [], storyProgress: [], waitingUserId: null, waitingSince: null, matches: [] };
   }
 }
 
@@ -511,10 +514,19 @@ router.post("/matchmaking/join", async (req, res) => {
   const existingActive = store.matches.find((match) => match.status === "active" && match.players.some((player) => player.userId === user.id));
   if (existingActive) return res.json({ status: "matched", match: viewMatch(existingActive, user.id) });
 
+  const waitingAge = store.waitingSince ? Date.now() - Date.parse(store.waitingSince) : Number.POSITIVE_INFINITY;
+  const waitingIsStale = !store.waitingUserId || !Number.isFinite(waitingAge) || waitingAge > matchmakingQueueTtlMs;
+  if (waitingIsStale) {
+    store.waitingUserId = null;
+    store.waitingSince = null;
+  }
+
   if (store.waitingUserId && store.waitingUserId !== user.id) {
     const opponent = store.users.find((item) => item.id === store.waitingUserId);
-    if (!opponent) {
+    const opponentActive = store.matches.some((match) => match.status === "active" && match.players.some((player) => player.userId === store.waitingUserId));
+    if (!opponent || opponentActive) {
       store.waitingUserId = user.id;
+      store.waitingSince = new Date().toISOString();
       await writeStore(store);
       return res.json({ status: "queued" });
     }
@@ -529,11 +541,13 @@ router.post("/matchmaking/join", async (req, res) => {
       updatedAt: new Date().toISOString(),
     };
     store.waitingUserId = null;
+    store.waitingSince = null;
     store.matches.push(match);
     await writeStore(store);
     return res.json({ status: "matched", match: viewMatch(match, user.id) });
   }
   store.waitingUserId = user.id;
+  store.waitingSince = new Date().toISOString();
   await writeStore(store);
   return res.json({ status: "queued" });
 });
